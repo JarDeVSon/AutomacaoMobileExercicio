@@ -23,8 +23,8 @@ public class CalculadoraPage {
     public void clickMultiplicar(){
         calculadoraMap.touchMultiplicar.click();
     }
-    public boolean setNumbers(boolean valor1){
-      return calculadoraMap.touchNumbers.isSelected();
+    public void setNumbers(boolean valor1){
+        calculadoraMap.touchNumbers.click();
     }
 
 }

@@ -19,7 +19,7 @@ public class GeraRelatorio {
         ReportBuilder reportBuilder = new ReportBuilder();
         reportBuilder.setReportDirectory("target/report/");
         reportBuilder.setReportFileName(dateFormatFile.format(date));
-        reportBuilder.setReportTitle("Squad - Canais - Operações - Automacao APIs");
+        reportBuilder.setReportTitle("Projeto Mobile Automation");
         reportBuilder.setReportColor(Color.CYAN);
         reportBuilder.enableVoiceControl();
         reportBuilder.setAdditionalInfo("Environment", "My Environment");

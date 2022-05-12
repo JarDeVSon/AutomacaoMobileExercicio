@@ -5,6 +5,7 @@ import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 import io.cucumber.java.pt.Dado;
+import io.cucumber.java.pt.E;
 import io.cucumber.java.pt.Entao;
 import io.cucumber.java.pt.Quando;
 import pages.CalculadoraPage;
@@ -18,17 +19,12 @@ public class CalculadoraSteps {
     CalculadoraPage calculadoraPage;
 
     @Before
-    public void inicializaApp() throws MalformedURLException {
+    public void inicializaApp(Scenario scenario) throws MalformedURLException {
         new Driver("Android", "Nexus 4 API 28", "uiautomator2",
                 "com.android.calculator2", "com.android.calculator2.Calculator");
+        System.out.println("Cenario: " + scenario.getName());
     }
 
-    @After
-    public void fechaApp(Scenario scenario) {
-        System.out.println("Cenario: " + scenario.getName());
-        System.out.println("Status: " + scenario.getStatus());
-        Driver.getDriver().quit();
-    }
 
     @Dado("que estou na tela principal")
     public void queEstouNaTelaPrincipal() {
@@ -54,10 +50,15 @@ public class CalculadoraSteps {
 
     @Quando("insiro os valores {string} e {string}")
     public void insiroOsValoresE(String valor1, String valor2) {
-        boolean numero1 = Boolean.parseBoolean(valor1);
-        boolean numero2 = Boolean.parseBoolean(valor2);
-        calculadoraPage.setNumbers(numero1);
-        calculadoraPage.setNumbers(numero2);
+        calculadoraPage.setNumbers(Boolean.parseBoolean(valor1));
+        calculadoraPage.clickMultiplicar();
+        calculadoraPage.setNumbers(Boolean.parseBoolean(valor2));
+
+    }
+
+    @E("clicar em igual")
+    public void clicarEmIgual() {
+        calculadoraPage.clickEqual();
     }
 
     @Entao("deve ser exibido o resultado {string}")
@@ -66,4 +67,12 @@ public class CalculadoraSteps {
 
         assertEquals(resposta, calculadoraPage.getResult(resultado));
     }
+
+
+    @After
+    public void fechaApp(Scenario scenario) {
+        System.out.println("Status: " + scenario.getStatus());
+        Driver.getDriver().quit();
+    }
+
 }
