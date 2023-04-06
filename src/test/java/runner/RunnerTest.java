@@ -4,6 +4,7 @@ import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
 import org.junit.AfterClass;
 import org.junit.runner.RunWith;
+import util.ReportUtils;
 
 import java.io.IOException;
 
@@ -11,9 +12,9 @@ import java.io.IOException;
 @CucumberOptions(
         features = "src/test/resources/features",
         glue = "steps",
-        plugin = {"json:target/report/cucumber.json","html:target/report.html"},
+        plugin = {"json:target/report/cucumber.json"},
         snippets = CucumberOptions.SnippetType.CAMELCASE,
-        tags = "@multiplicar"
+        tags = "@regressivo"
 )
 public class RunnerTest {
     @AfterClass
@@ -23,6 +24,7 @@ public class RunnerTest {
         } else {
             Runtime.getRuntime().exec("sh -c mvn cluecumber-report:reporting");
         }
-        GeraRelatorio.gerar();
+        ReportUtils.report();
     }
+
 }

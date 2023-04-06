@@ -1,16 +1,11 @@
 package steps;
 
-import core.Driver;
-import io.cucumber.java.After;
-import io.cucumber.java.Before;
-import io.cucumber.java.Scenario;
+import core.DriverFactory;
 import io.cucumber.java.pt.Dado;
 import io.cucumber.java.pt.E;
 import io.cucumber.java.pt.Entao;
 import io.cucumber.java.pt.Quando;
 import pages.CalculadoraPage;
-
-import java.net.MalformedURLException;
 
 import static org.junit.Assert.assertEquals;
 
@@ -18,17 +13,16 @@ public class CalculadoraSteps {
 
     CalculadoraPage calculadoraPage;
 
-    @Before
-    public void inicializaApp(Scenario scenario) throws MalformedURLException {
-        new Driver("Android", "Nexus 4 API 28", "uiautomator2",
-                "com.android.calculator2", "com.android.calculator2.Calculator");
-        System.out.println("Cenario: " + scenario.getName());
-    }
-
 
     @Dado("que estou na tela principal")
-    public void queEstouNaTelaPrincipal() {
-        calculadoraPage = new CalculadoraPage();
+    public void queEstouNaTelaPrincipal() throws Exception {
+        try {
+            calculadoraPage = new CalculadoraPage();
+            DriverFactory.printScreenshot("que estou na tela principal");
+        } catch (Exception e) {
+            throw new Exception("Não estou na tela principal");
+        }
+
     }
 //
 //    @Quando("insiro os valores")
@@ -49,30 +43,41 @@ public class CalculadoraSteps {
 //    }
 
     @Quando("insiro os valores {string} e {string}")
-    public void insiroOsValoresE(String valor1, String valor2) {
-        calculadoraPage.setNumbers(Boolean.parseBoolean(valor1));
-        calculadoraPage.clickMultiplicar();
-        calculadoraPage.setNumbers(Boolean.parseBoolean(valor2));
+    public void insiroOsValoresE(String valor1, String valor2) throws Exception {
+        try {
+            calculadoraPage.setNumbers(Boolean.parseBoolean(valor1));
+            calculadoraPage.clickMultiplicar();
+            calculadoraPage.setNumbers(Boolean.parseBoolean(valor2));
+            DriverFactory.printScreenshot("insiro os valores");
+        } catch (Exception e) {
+            throw new Exception("não foi inserido os valores");
+        }
+
 
     }
 
     @E("clicar em igual")
-    public void clicarEmIgual() {
-        calculadoraPage.clickEqual();
+    public void clicarEmIgual() throws Exception {
+        try {
+            calculadoraPage.clickEqual();
+            DriverFactory.printScreenshot("clicar em igual");
+        } catch (Exception e) {
+            throw new Exception("Não clicou em Igual");
+        }
+
     }
 
     @Entao("deve ser exibido o resultado {string}")
-    public void deveSerExibidoOResultado(String resultado) {
-        String resposta = calculadoraPage.getResult(resultado);
+    public void deveSerExibidoOResultado(String resultado) throws Exception {
+        try {
+            String resposta = calculadoraPage.getResult();
+            assertEquals(resultado, resposta);
+            DriverFactory.printScreenshot("deve ser exibido o resultado");
+        } catch (Exception e) {
+            throw new Exception("Não foi exibido o resultado");
+        }
 
-        assertEquals(resposta, calculadoraPage.getResult(resultado));
     }
 
-
-    @After
-    public void fechaApp(Scenario scenario) {
-        System.out.println("Status: " + scenario.getStatus());
-        Driver.getDriver().quit();
-    }
 
 }

@@ -1,4 +1,4 @@
-package runner;
+package util;
 
 import com.rajatthareja.reportbuilder.Color;
 import com.rajatthareja.reportbuilder.ReportBuilder;
@@ -10,12 +10,12 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class GeraRelatorio {
+public class ReportUtils {
     private static DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
     private static DateFormat dateFormatFile = new SimpleDateFormat("dd-M-yyyy");
     private static Date date = new Date();
 
-    public static void gerar(){
+    public static void report(){
         ReportBuilder reportBuilder = new ReportBuilder();
         reportBuilder.setReportDirectory("target/report/");
         reportBuilder.setReportFileName(dateFormatFile.format(date));

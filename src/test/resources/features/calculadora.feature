@@ -1,9 +1,11 @@
 #language: pt
 
+
+@regressivo
 Funcionalidade: Calculadora de valores
-    Eu como usuario
-    Gostaria de utilizar a calculadora
-    Para calcular e quitar as dívidas
+  Eu como usuario
+  Gostaria de utilizar a calculadora
+  Para calcular e quitar as dívidas
 
 
   Contexto: Tela da Calculadora

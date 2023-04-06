@@ -1,17 +1,22 @@
 package maps;
 
-import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
+import io.appium.java_client.pagefactory.iOSXCUITFindBy;
+import org.openqa.selenium.remote.RemoteWebElement;
 
 public class CalculadoraMap {
 
     @AndroidFindBy(id = "digit_7")
-    public MobileElement touchNumbers;
+    @iOSXCUITFindBy(id = "digit_7")
+    public RemoteWebElement touchNumbers;
     @AndroidFindBy(id = "op_mul")
-    public MobileElement touchMultiplicar;
+    @iOSXCUITFindBy(id = "op_mul")
+    public RemoteWebElement touchMultiplicar;
     @AndroidFindBy(id = "eq")
-    public MobileElement touchEqual;
+    @iOSXCUITFindBy(id = "eq")
+    public RemoteWebElement touchEqual;
     @AndroidFindBy(id = "result")
-    public MobileElement result;
+    @iOSXCUITFindBy(id = "result")
+    public RemoteWebElement result;
 
 }
