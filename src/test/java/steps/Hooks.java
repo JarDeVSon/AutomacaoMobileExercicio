@@ -12,13 +12,13 @@ public class Hooks {
 
     @Before
     public void inicializaApp(Scenario scenario) throws MalformedURLException {
-        new DriverFactory("",
+        new DriverFactory("C:\\Users\\pesso\\AutomacaoMobileExercicio\\Calculadora.apk",
                 "Android",
                 "Nexus 4 API 28",
                 "uiautomator2",
                 "com.android.calculator2",
                 "com.android.calculator2.Calculator",
-                false);
+                true);
         DriverFactory.setNameScenario(scenario.getName());
         DriverFactory.makeDirectory();
         System.out.println("Cenario: " + scenario.getName());
