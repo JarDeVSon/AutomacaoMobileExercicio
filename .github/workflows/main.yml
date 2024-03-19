@@ -1,4 +1,4 @@
-name: Testes Regressivos com Appium CI 
+name: Testes Regressivos com Appium CI - Slack Notification
 
 on:
   pull_request:
