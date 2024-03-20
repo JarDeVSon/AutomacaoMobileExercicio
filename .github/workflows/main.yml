@@ -9,6 +9,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+
+      - name: Checkout
+        uses: actions/checkout@v4.1.1
+
       - name: Setup Appium
         uses: youngfreeFJS/setup-appium@0.1.6
 
@@ -19,8 +23,6 @@ jobs:
           distribution: 'adopt'
           cache: maven
 
-
-          
       - name: Execucao dos Testes Regressivos
         run: mvn test -Dcucumber.filter.tags="@regressivo" cluecumber-report:reporting
 
