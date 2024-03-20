@@ -12,7 +12,7 @@ public class Hooks {
 
     @Before
     public void inicializaApp(Scenario scenario) throws MalformedURLException {
-        new DriverFactory("Calculadora.apk",
+        new DriverFactory("apps/Calculadora.apk",
                 "Android",
                 "Nexus 4 API 28",
                 "uiautomator2",
