@@ -30,6 +30,7 @@ jobs:
         uses: ReactiveCircus/android-emulator-runner@v2.9.0
         with:
           api-level: 29
+          script: ./mvn install
 
       - name: Execucao dos Testes Regressivos
         run: mvn test -Dcucumber.filter.tags="@regressivo" cluecumber-report:reporting
