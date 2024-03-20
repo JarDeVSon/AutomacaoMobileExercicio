@@ -23,7 +23,7 @@ jobs:
       - name: Install the Emulator
         run: |
           chmod +x ./scripts/RunAppiumServer.sh
-          ./scripts/RunAppiumServer.sh
+          ./scripts/install-android-sdk.sh ./scripts/emulator-up.sh
         shell: bash
 
       - name: Android Emulator Runner
