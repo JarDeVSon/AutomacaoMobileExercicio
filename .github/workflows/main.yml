@@ -23,14 +23,14 @@ jobs:
       - name: Install the Emulator
         run: |
           chmod +x ./scripts/RunAppiumServer.sh
-          ./scripts/install-android-sdk.sh ./scripts/emulator-up.sh
+          ./scripts/emulator-up.sh
         shell: bash
 
       - name: Android Emulator Runner
         uses: ReactiveCircus/android-emulator-runner@v2.9.0
         with:
           api-level: 29
-          script: ./mvn install
+          script: mvn install
 
       - name: Execucao dos Testes Regressivos
         run: mvn test -Dcucumber.filter.tags="@regressivo" cluecumber-report:reporting
